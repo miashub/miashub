@@ -1,16 +1,18 @@
-## Hi there 👋
+# Hi, I'm Mia 👋  
+**Aspiring Full-Stack & AI Developer** | Software Engineering Student at Seneca College  
 
-<!--
-**miashub/miashub** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+## 🚀 Skills  
+- **Languages:** Python, C++, C, SQL, JavaScript  
+- **Web Development:** Django, React, PostgreSQL  
+- **AI & Data Science:** TensorFlow, NumPy  
 
-Here are some ideas to get you started:
+## 📂 Projects  
+### [📌 Prediction App (Hackathon Project)](GitHub_Link)  
+AI-driven app analyzing financial datasets.  
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### [📌 Content Sharing Website (Django)](GitHub_Link)  
+Full-stack web platform for user-generated content.  
+
+## 📫 Contact  
+- LinkedIn: [Your LinkedIn](LinkedIn_Link)  
+- GitHub: [Your GitHub](GitHub_Link)  
