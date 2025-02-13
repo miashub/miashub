@@ -14,5 +14,5 @@ AI-driven app analyzing financial datasets.
 Full-stack web platform for user-generated content.  
 
 ## 📫 Contact  
-- LinkedIn: [Your LinkedIn](LinkedIn_Link)  
-- GitHub: [Your GitHub](GitHub_Link)  
+- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/fathima-shajahan-4baa142a7?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B3SweghY7RLyzl4vP1TKT5Q%3D%3D)  
+- GitHub: [Your GitHub](https://github.com/miashub) 
