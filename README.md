@@ -1,41 +1,49 @@
-# Hi, I'm Mia 👋  
-**Aspiring Full-Stack & AI Developer** | Software Engineering Student at Seneca College  
+# 🎨 Hi, I'm Mia 👋  
+**Full-Stack Developer**  
+*Software Engineering Student @ Seneca College*
+
+---
 
 ## 🚀 Skills  
-- **Languages:** Python, C++, C, SQL, JavaScript  
-- **Databases:** MySQL, PostgreSQL
-- **Frameworks**: React.js, Express.js, Bootstrap, Tailwind CSS, Django
-- **AI & Data Science:** TensorFlow, NumPy  
+> **Languages**:  
+> 🛠️ Python | C++ | C | SQL | JavaScript  
+>  
+> **Databases**:  
+> 🗄️ MySQL | PostgreSQL  
+>  
+> **Frameworks & Libraries**:  
+> ⚛️ React.js | 🧩 Express.js | 🎨 Bootstrap | 🌬️ Tailwind CSS | 🐍 Django  
+>  
+> **AI & Data Science**:  
+> 🤖 TensorFlow | 📊 NumPy  
+
+---
 
 ## 📂 Projects  
 
-🔐 Secure File Sharing Platform
-React • Django • PostgreSQL • Fernet Encryption
-<span style="float: right;">🔗 Live Demo | 💻 GitHub</span>
+### 🔐 Secure File Sharing Platform  
+**Tech Stack**: React • Django • PostgreSQL • Fernet Encryption  
 
-Developed a full-stack secure file-sharing system with session-based auth and encrypted file storage using Fernet
+- 🔒 Built a secure, full-stack file-sharing system with session-based authentication and encrypted file storage using Fernet.
+- 🔧 Developed RESTful API endpoints with complete CRUD functionality for file management.
+- 🎛️ Integrated file previews, animated dashboard UI, dynamic filtering, and modal dialogs.
+- 🛡️ Focused on encrypted uploads, authenticated downloads, and strict permission control.
+- 🔗 **[View Code on GitHub]([https://github.com/miashub/SHF-file-sharing-website](https://github.com/miashub/SHF-file-sharing-website))**
+  
+---
 
-Designed RESTful API endpoints and implemented full CRUD logic for file operations
+### 📦 Inventory Management System with Barcode Scanner  
+**Tech Stack**: React • Django • PostgreSQL • JsBarcode  
 
-Integrated file previews, dashboard UI with animations, filtering, and modal dialogs
+- 📦 Developed a responsive inventory app with real-time barcode scanning and full CRUD operations.
+- 📜 Implemented scan history tracking, low-stock alerts, and CSV export functionality.
+- 🎯 Integrated a modal-based barcode scanner inside the Add Product form for a smoother UX.
+- 🧹 Built a clean, sortable, and filterable dashboard with custom stock alert thresholds.
+ 🔗 **[View Code on GitHub]([https://github.com/miashub/Inventory-Management](https://github.com/miashub/Inventory-Management))**
+---
 
-Focused on secure uploads, authenticated downloads, and proper permission control
+## 📫 Let's Connect!  
+- 🔗 [LinkedIn](linkedin.com/in/mia-shajahan)  
+- 🖥️ [GitHub](https://github.com/miashub)  
 
-📦 Inventory Management System with Barcode Scanner
-React • Django • PostgreSQL • QuaggaJS / JsBarcode
-<span style="float: right;">🔗 Live Demo | 💻 GitHub</span>
-
-Created a responsive inventory app with CRUD capabilities and real-time barcode scanning
-
-Implemented scan history logging, low-stock alerts, and CSV export
-
-Enabled modal-based scanner integration within the Add Product form
-
-Designed user-friendly UI with filtering, sorting, and alert thresholds
-
-
-
-
-## 📫 Contact  
-- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/fathima-shajahan-4baa142a7?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B3SweghY7RLyzl4vP1TKT5Q%3D%3D)  
-- GitHub: [Your GitHub](https://github.com/miashub) 
+---
