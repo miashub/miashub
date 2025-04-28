@@ -41,7 +41,7 @@ export default function CosmicParticles({ className, theme }: { className?: stri
       alphaDir: number;
       hue: number;
       lightness: number;
-      baseLightness: number; // Store the original lightness
+      baseLightness: number; 
       connections: number;
 
       constructor(width: number, height: number) {
@@ -55,8 +55,8 @@ export default function CosmicParticles({ className, theme }: { className?: stri
         this.hue = theme === 'nebula'
           ? Math.random() * 60 + 200
           : Math.random() * 30 + 30;
-        this.baseLightness = Math.random() * 20 + 60; // Original lightness
-        this.lightness = this.baseLightness; // Current lightness
+        this.baseLightness = Math.random() * 20 + 60; 
+        this.lightness = this.baseLightness; 
         this.connections = 0;
       }
 
@@ -79,14 +79,13 @@ export default function CosmicParticles({ className, theme }: { className?: stri
           const dy = this.y - mouse.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          // Make particles brighter when cursor is nearby
           if (distance < 150) {
-            // Calculate brightness boost based on distance (closer = brighter)
+      
             const proximityFactor = 1 - (distance / 150);
-            this.lightness = this.baseLightness + (proximityFactor * 30); // Increase lightness up to 30%
-            this.alpha = 0.7 + (proximityFactor * 0.3); // Also increase alpha slightly
+            this.lightness = this.baseLightness + (proximityFactor * 30);
+            this.alpha = 0.7 + (proximityFactor * 0.3); 
           } else {
-            // Gradually return to normal brightness
+   
             this.lightness += (this.baseLightness - this.lightness) * 0.1;
             this.alpha += (0.5 - this.alpha) * 0.1;
           }
@@ -114,7 +113,7 @@ export default function CosmicParticles({ className, theme }: { className?: stri
         this.x = Math.random() * width;
         this.y = Math.random() * height * 0.5;
         this.speed = Math.random() * 8 + 8;
-        this.angle = (Math.random() * Math.PI) / 6 + Math.PI / 4; // 30° to 60°
+        this.angle = (Math.random() * Math.PI) / 6 + Math.PI / 4; 
         this.length = Math.random() * 100 + 50;
         this.alpha = 1;
       }
@@ -145,7 +144,7 @@ export default function CosmicParticles({ className, theme }: { className?: stri
 
     const particles: Particle[] = [];
     const shootingStars: ShootingStar[] = [];
-    const mouse = { x: -9999, y: -9999 }; // out of view initially
+    const mouse = { x: -9999, y: -9999 }; 
 
     const initParticles = () => {
       const { width, height } = getSize();

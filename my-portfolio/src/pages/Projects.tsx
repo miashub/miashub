@@ -3,9 +3,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { PROJECTS } from './constants';
+import { PROJECTS } from '../utils/constants';
 
-// Define types for project structure
 type Project = {
   title: string;
   description: string;
@@ -18,7 +17,6 @@ type Project = {
   };
 };
 
-// ProjectCard component typed with proper props
 const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex, theme }: { 
   project: Project;
   index: number;
@@ -28,7 +26,7 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
 }) => {
   const [hovering, setHovering] = useState(false);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
-  const [hoverCount, setHoverCount] = useState(0); // <-- Add this line for hoverCount state
+  const [hoverCount, setHoverCount] = useState(0);
   const hoverTimer = useRef<NodeJS.Timeout | null>(null);
   const backTimer = useRef<NodeJS.Timeout | null>(null);
 
@@ -38,10 +36,10 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
 
   const handleMouseEnter = () => {
     setHovering(true);
-    setHoverCount((prev) => prev + 1); // Increment hover count
+    setHoverCount((prev) => prev + 1);
     hoverTimer.current = setTimeout(() => {
       setFlippedIndex(index);
-    }, 5000); 
+    }, 5000);
   };
 
   const handleMouseLeave = () => {
@@ -56,7 +54,7 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
     if (flippedIndex === index && hovering) {
       backTimer.current = setTimeout(() => {
         setFlippedIndex(null);
-      }, 5000); // Delay for back flip
+      }, 5000);
     }
     return () => {
       if (backTimer.current) clearTimeout(backTimer.current);
@@ -73,18 +71,17 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, delay: index * 0.12 }}
       viewport={{ once: false, amount: 0.1 }}
-      style={{ willChange: 'transform, opacity' }} // CSS performance boost
+      style={{ willChange: 'transform, opacity' }}
     >
       <div
         className={`relative w-full h-full flip-card transition-transform duration-300 ${
           flippedIndex === index
             ? 'rotate-y-180'
-            : hovering && hoverCount % 10 === 1 // <-- Now hoverCount is correctly used
+            : hovering && hoverCount % 10 === 1
             ? 'hover-tilt'
             : ''
         }`}
       >
-        {/* Front Side */}
         <div
           className={`absolute inset-0 bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-md flex flex-col ${
             theme === 'nebula' ? 'hover:shadow-purple-500/50' : 'hover:shadow-yellow-500/50'
@@ -102,7 +99,6 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
             </svg>
           </button>
 
-          {/* Project Image */}
           <a
             href={project.live}
             target="_blank"
@@ -113,7 +109,7 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
               src={`/project-${index + 1}.jpg`}
               alt={project.title}
               fill
-              loading="lazy" // Lazy loading
+              loading="lazy"
               className="object-cover transform transition-transform duration-500 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:bg-black/40 transition-all" />
@@ -126,10 +122,8 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
             </h4>
           </a>
 
-          {/* Project Description */}
           <p className="text-gray-300 text-sm mb-5 flex-grow">{project.description}</p>
 
-          {/* Icons with Animated Tooltips */}
           <div className="flex flex-wrap gap-3 mb-6">
             {project.icons.map((icon: string) => (
               <motion.div
@@ -150,7 +144,6 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
                   />
                 </div>
 
-                {/* Tooltip */}
                 <AnimatePresence>
                   {hoveredSkill === icon && (
                     <motion.div
@@ -179,7 +172,6 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
             ))}
           </div>
 
-          {/* Links */}
           <div className="flex gap-4">
             <a
               href={project.live}
@@ -208,7 +200,6 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
           </div>
         </div>
 
-        {/* Back Side */}
         <div
           className={`absolute inset-0 bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-md flex flex-col ${
             theme === 'nebula' ? 'shadow-purple-500/20' : 'shadow-yellow-500/20'
@@ -251,14 +242,12 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
   );
 });
 
-// Main Projects component
 export default function Projects({ theme }: { theme: 'nebula' | 'supernova' }) {
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
 
   return (
     <section id="projects" className="min-h-screen flex flex-col items-center px-6 gap-5 pt-25 pb-5 relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        {/* Section Title */}
         <motion.h3
           className={`text-4xl md:text-5xl font-bold mb-16 text-center bg-clip-text text-transparent ${
             theme === 'nebula'
@@ -273,7 +262,6 @@ export default function Projects({ theme }: { theme: 'nebula' | 'supernova' }) {
           My Projects
         </motion.h3>
 
-        {/* Project Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {PROJECTS.map((project, index) => (
             <ProjectCard
@@ -286,25 +274,20 @@ export default function Projects({ theme }: { theme: 'nebula' | 'supernova' }) {
             />
           ))}
 
-          {/* Coming Soon Card */}
           <motion.div
-  className="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-md shadow-white/5 flex flex-col justify-center items-center text-center min-h-[500px]"
-  initial={{ opacity: 0, scale: 0.8 }}
-  whileInView={{ opacity: 1, scale: 1 }}
-  transition={{ duration: 0.6, delay: PROJECTS.length * 0.12 }}
-  viewport={{ once: false, amount: 0.1 }}
->
-  <h4
-    className={`text-2xl font-bold mb-4 transition-colors group-hover:${
-      theme === 'nebula' ? 'text-purple-500' : 'text-yellow-500'
-    }`}
-  >
-    Coming Soon...
-  </h4>
-  <p className="text-gray-400 text-sm">
-    More exciting projects are in progress. Stay tuned!
-  </p>
-</motion.div>
+            className="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-md shadow-white/5 flex flex-col justify-center items-center text-center min-h-[500px]"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: PROJECTS.length * 0.12 }}
+            viewport={{ once: false, amount: 0.1 }}
+          >
+            <h4 className="text-2xl font-bold mb-4">
+              Coming Soon...
+            </h4>
+            <p className="text-gray-400 text-sm">
+              More exciting projects are in progress. Stay tuned!
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>

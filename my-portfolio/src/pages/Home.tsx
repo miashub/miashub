@@ -96,11 +96,6 @@ export default function Home({ theme }: { theme: 'nebula' | 'supernova' }) {
 
   return (
     <section id="home" className="flex flex-col items-center justify-center min-h-screen px-6 relative overflow-hidden text-center space-y-1">
-
-      {/* Background Stars */}
-      <div className="absolute inset-0 bg-[url('/stars-bg.jpg')] bg-cover bg-center opacity-10 -z-10"></div>
-
-      {/* Profile Image with Interactive Animation */}
       <motion.div
         className="relative group"
         initial={{ scale: 0.9, opacity: 0 }}
@@ -120,7 +115,6 @@ export default function Home({ theme }: { theme: 'nebula' | 'supernova' }) {
         </div>
       </motion.div>
 
-      {/* Scrambling Name */}
       <motion.h2 
         className={`text-2xl md:text-4xl font-bold ${textGradient} bg-clip-text text-transparent cursor-pointer`}
         initial={{ opacity: 0, y: 20 }}
@@ -133,9 +127,8 @@ export default function Home({ theme }: { theme: 'nebula' | 'supernova' }) {
         {displayedText}
       </motion.h2>
 
-      {/* Location */}
       <motion.p
-        className="text-sm flex items-center justify-center gap-1 mt-2" // Reduced gap with 'mt-2'
+        className="text-sm flex items-center justify-center gap-1 mt-2"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
@@ -146,7 +139,6 @@ export default function Home({ theme }: { theme: 'nebula' | 'supernova' }) {
         </span>
       </motion.p>
 
-      {/* Tagline */}
       <motion.p 
         className={`text-sm ${theme === 'nebula' ? 'text-gray-300' : 'text-gray-100'} max-w-sm mt-2`}
         initial={{ opacity: 0, y: 20 }}
@@ -156,15 +148,14 @@ export default function Home({ theme }: { theme: 'nebula' | 'supernova' }) {
         Full-stack developer working with React, Next.js, and Django.
       </motion.p>
 
-      {/* Social Links */}
       <motion.div 
         className="flex gap-8 text-2xl mt-1 justify-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        {[ 
-          { href: "mailto:fathimas0207@gmail.com", icon: <FaEnvelope /> }, 
+        {[
+          { href: "mailto:fathimas0207@gmail.com", icon: <FaEnvelope /> },
           { href: "https://github.com/miashub", icon: <FaGithub /> },
           { href: "https://linkedin.com/in/mia-shajahan", icon: <FaLinkedin /> }
         ].map(({ href, icon }, idx) => (
@@ -182,7 +173,6 @@ export default function Home({ theme }: { theme: 'nebula' | 'supernova' }) {
         ))}
       </motion.div>
 
-      {/* Scroll Down Indicator */}
       <motion.div
         className="absolute bottom-6 flex items-center justify-center"
         initial={{ opacity: 0 }}
@@ -199,9 +189,7 @@ export default function Home({ theme }: { theme: 'nebula' | 'supernova' }) {
           whileHover={{ scale: 1.2 }}
         >
           <FaChevronDown
-            className={`${
-              theme === 'nebula' ? 'text-purple-400' : 'text-yellow-400'
-            } text-4xl scale-x-150 scale-y-80 opacity-40`}
+            className={`${theme === 'nebula' ? 'text-purple-400' : 'text-yellow-400'} text-4xl scale-x-150 scale-y-80 opacity-40`}
           />
         </motion.div>
       </motion.div>

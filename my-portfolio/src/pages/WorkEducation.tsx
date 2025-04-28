@@ -53,7 +53,6 @@ export default function WorkEducation({
       skills: ['Python', 'SQL', 'Troubleshooting'],
     },
     {
-
       role: 'Tech Community Volunteer',
       company: 'Infotech Computers, India',
       period: 'June 2023',
@@ -71,9 +70,8 @@ export default function WorkEducation({
         'Designed and maintained web pages to support charity events.\n' +
         'Created digital posters and managed social media outreach.\n' +
         'Built online registration forms and simple event tracking sheets.',
-      skills: ['HTML', 'CSS', 'JavaScript','Event Management'],
+      skills: ['HTML', 'CSS', 'JavaScript', 'Event Management'],
     },
-    
   ];
 
   const education: EducationItem[] = [
@@ -110,35 +108,13 @@ export default function WorkEducation({
   const getItems = (tab: Tab) => (tab === 'work' ? workExperience : education);
 
   const mergeItems = (items: (WorkItem | EducationItem)[]): DisplayedItem[] => {
-    return items.map(item => {
-      let roleOrDegree = '';
-      let companyOrSchool = '';
-      let period = '';
-      let descriptionPoints: string[] = [];
-      let skills: string[] = [];
-
-      if ('role' in item) {
-        roleOrDegree = item.role;
-        companyOrSchool = item.company;
-        period = item.period;
-        descriptionPoints = item.description ? item.description.split('\n') : [];
-        skills = item.skills || [];
-      } else {
-        roleOrDegree = item.degree;
-        companyOrSchool = item.school;
-        period = item.period;
-        descriptionPoints = item.description ? item.description.split('\n') : [];
-        skills = item.skills || [];
-      }
-
-      return {
-        roleOrDegree,
-        companyOrSchool,
-        period,
-        descriptionPoints,
-        skills,
-      };
-    });
+    return items.map(item => ({
+      roleOrDegree: 'role' in item ? item.role : item.degree,
+      companyOrSchool: 'role' in item ? item.company : item.school,
+      period: item.period,
+      descriptionPoints: item.description ? item.description.split('\n') : [],
+      skills: item.skills || [],
+    }));
   };
 
   const [displayedItems, setDisplayedItems] = useState<DisplayedItem[]>(mergeItems(getItems(activeTab)));
@@ -160,19 +136,11 @@ export default function WorkEducation({
 
     const scrambleText = (from: string, to: string) => {
       const maxLength = Math.max(from.length, to.length);
+      const lockProgress = (currentFrame / frames) * maxLength;
       let result = '';
 
-      const lockProgress = (currentFrame / frames) * maxLength;
-
       for (let i = 0; i < maxLength; i++) {
-        const fromChar = from[i] || '';
-        const toChar = to[i] || '';
-
-        if (i < lockProgress) {
-          result += toChar;
-        } else {
-          result += chars[Math.floor(Math.random() * chars.length)];
-        }
+        result += i < lockProgress ? to[i] || '' : chars[Math.floor(Math.random() * chars.length)];
       }
 
       return result;
@@ -212,9 +180,7 @@ export default function WorkEducation({
   };
 
   return (
-    <section id="work-education" className="min-h-screen flex flex-col items-center px-6 gap-5 pt-25 pb-5 relative overflow-hidden">
-
-      {/* ✨ Animate Whole Group */}
+    <section id="work-education" className="min-h-screen flex flex-col items-center px-4 sm:px-6 md:px-10 gap-5 pt-24 pb-8 relative overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -222,10 +188,9 @@ export default function WorkEducation({
         viewport={{ once: false, amount: 0.1 }}
         className="flex flex-col items-center w-full gap-10"
       >
-
-        {/* ✨ Heading */}
+        {/* Heading */}
         <h3
-          className={`text-4xl md:text-5xl font-extrabold text-center bg-clip-text text-transparent ${
+          className={`text-3xl md:text-5xl font-extrabold text-center bg-clip-text text-transparent ${
             theme === 'nebula'
               ? 'bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500'
               : 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500'
@@ -234,21 +199,21 @@ export default function WorkEducation({
           Work & Education
         </h3>
 
-        {/* ✨ Tabs */}
-        <div className="sticky top-1 z-20 flex justify-center gap-8 bg-white/5 backdrop-blur-md rounded-xl py-3 px-6 shadow-md border border-white/10">
+        {/* Tabs */}
+        <div className="sticky top-1 z-20 flex justify-center gap-4 sm:gap-8 bg-white/5 backdrop-blur-md rounded-xl py-2 px-4 sm:py-3 sm:px-6 shadow-md border border-white/10">
           <button
             onClick={() => setTab('work')}
             disabled={scrambling}
-            className={`px-6 py-3 rounded-lg text-base font-semibold transition-all ${
+            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-all ${
               activeTab === 'work' ? `bg-white/10 ${tabColor} shadow-md` : 'text-gray-400 hover:text-white'
             }`}
           >
-            Work Experience
+            Work
           </button>
           <button
             onClick={() => setTab('education')}
             disabled={scrambling}
-            className={`px-6 py-3 rounded-lg text-base font-semibold transition-all ${
+            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-all ${
               activeTab === 'education' ? `bg-white/10 ${tabColor} shadow-md` : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -256,52 +221,42 @@ export default function WorkEducation({
           </button>
         </div>
 
-        {/* ✨ Cards Section */}
-        <div className="max-w-7xl w-full p-10 rounded-2xl border border-white/5 shadow-md shadow-white/5 backdrop-blur-md bg-white/5 flex flex-col gap-8">
-          {displayedItems.map((item, index) => {
-            const { roleOrDegree, companyOrSchool, period, descriptionPoints, skills } = item;
-            const isReadyToWork = roleOrDegree.trim() === 'Ready to Work..';
+        {/* Cards Section */}
+        <div className="max-w-7xl w-full p-4 sm:p-6 md:p-10 rounded-2xl border border-white/5 shadow-md shadow-white/5 backdrop-blur-md bg-white/5 flex flex-col gap-8">
+          {displayedItems.map((item, index) => (
+            <div
+              key={index}
+              className="bg-white/5 backdrop-blur-sm p-5 sm:p-6 rounded-xl shadow-md flex flex-col gap-3 transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+            >
+              <h3 className={`text-xl sm:text-2xl font-bold ${tabColor}`}>{item.roleOrDegree}</h3>
+              {item.companyOrSchool && <p className="text-gray-300">{item.companyOrSchool}</p>}
+              {item.period && <p className="text-gray-400 text-sm whitespace-pre-line">{item.period}</p>}
 
-            return (
-              <div
-                key={index}
-                className="bg-white/5 backdrop-blur-sm p-6 rounded-xl shadow-md flex flex-col gap-2 transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
-              >
-                <h3 className={`text-2xl font-bold ${tabColor}`}>{roleOrDegree}</h3>
-                {!isReadyToWork && companyOrSchool && <p className="text-gray-300">{companyOrSchool}</p>}
-                {!isReadyToWork && period && <p className="text-gray-400 text-sm whitespace-pre-line">{period}</p>}
+              <ul className="flex flex-col gap-2 mt-4">
+                {item.descriptionPoints.map((point, idx) => (
+                  point.trim() && (
+                    <li key={idx} className="relative pl-6 text-gray-300">
+                      <span
+                        className={`absolute left-0 top-2 w-2 h-2 rounded-full ${bulletColor} shadow-md`}
+                      ></span>
+                      {point.trim()}
+                    </li>
+                  )
+                ))}
+              </ul>
 
-                {!isReadyToWork && (
-                  <div className="text-gray-300 mt-4">
-                    <ul className="flex flex-col gap-2 mb-4">
-                      {descriptionPoints.map((point, idx) => (
-                        point.trim() && (
-                          <li key={idx} className="relative pl-6">
-                            <span
-                              className={`absolute left-0 top-1/2 transform -translate-y-1/2 w-2 h-2 rounded-full ${bulletColor} shadow-md`}
-                            ></span>
-                            {point.trim()}
-                          </li>
-                        )
-                      ))}
-                    </ul>
-
-                    {skills.length > 0 && (
-                      <div className="flex flex-wrap gap-3 mt-2">
-                        {skills.map((skill, idx) => (
-                          <span key={idx} className="px-3 py-1 bg-white/10 rounded-full text-sm shadow-sm">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            );
-          })}
+              {item.skills.length > 0 && (
+                <div className="flex flex-wrap gap-3 mt-3">
+                  {item.skills.map((skill, idx) => (
+                    <span key={idx} className="px-3 py-1 bg-white/10 rounded-full text-sm shadow-sm">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
-
       </motion.div>
     </section>
   );

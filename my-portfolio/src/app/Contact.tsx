@@ -25,15 +25,15 @@ export default function Contact({ theme }: { theme: 'nebula' | 'supernova' }) {
   className={`relative w-full max-w-2xl bg-[rgba(10,10,26,0.8)] backdrop-blur-md p-10 md:p-14 rounded-3xl border border-gray-700/40 
     transition-all duration-500 z-10
     ${theme === 'nebula'
-      ? 'shadow-[0_0_60px_rgba(99,102,241,0.4)]'  // indigo glow
-      : 'shadow-[0_0_60px_rgba(251,191,36,0.4)]'  // yellow/orange glow
+      ? 'shadow-[0_0_60px_rgba(99,102,241,0.4)]'  
+      : 'shadow-[0_0_60px_rgba(251,191,36,0.4)]' 
     }`}
   initial={{ scale: 0.9, opacity: 0 }}
   whileInView={{ scale: 1, opacity: 1 }}
   transition={{ duration: 0.6 }}
   viewport={{ amount: 0.2 }}
 >
-        {/* Title */}
+
         <motion.h3 
           className={`text-4xl font-bold mb-8 text-center bg-clip-text text-transparent ${
             theme === 'nebula'
@@ -48,7 +48,6 @@ export default function Contact({ theme }: { theme: 'nebula' | 'supernova' }) {
           Let's Connect
         </motion.h3>
 
-        {/* Professional message */}
         <motion.p 
           className="text-gray-300 mb-10 text-lg text-center leading-relaxed"
           initial={{ opacity: 0 }}
@@ -60,7 +59,6 @@ export default function Contact({ theme }: { theme: 'nebula' | 'supernova' }) {
           Feel free to reach out if you're looking for a motivated developer ready to contribute and grow.
         </motion.p>
 
-        {/* Icons */}
         <motion.div 
           className="flex justify-center items-center gap-10 pt-4 text-4xl"
           initial={{ opacity: 0 }}
@@ -68,7 +66,6 @@ export default function Contact({ theme }: { theme: 'nebula' | 'supernova' }) {
           transition={{ delay: 0.4 }}
           viewport={{ once: true }}
         >
-          {/* Mail */}
           <motion.a 
             href="mailto:fathimas0207@gmail.com" 
             className={`text-gray-400 ${getHoverStyles('mail')} transition-all`}
@@ -78,7 +75,6 @@ export default function Contact({ theme }: { theme: 'nebula' | 'supernova' }) {
             <FaEnvelope />
           </motion.a>
 
-          {/* GitHub */}
           <motion.a 
             href="https://github.com/" 
             className={`text-gray-400 ${getHoverStyles('github')} transition-all`}
@@ -90,7 +86,6 @@ export default function Contact({ theme }: { theme: 'nebula' | 'supernova' }) {
             <FaGithub />
           </motion.a>
 
-          {/* LinkedIn */}
           <motion.a 
             href="https://linkedin.com/" 
             className={`text-gray-400 ${getHoverStyles('linkedin')} transition-all`}

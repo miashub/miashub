@@ -1,4 +1,5 @@
 'use client';
+
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
@@ -15,7 +16,6 @@ export default function ThemeToggle({ onChange }: ThemeToggleProps) {
     onChange(newTheme);
   };
 
-  // Optional: Save theme preference to localStorage
   useEffect(() => {
     const savedTheme = localStorage.getItem('portfolio-theme');
     if (savedTheme === 'nebula' || savedTheme === 'supernova') {
@@ -36,7 +36,6 @@ export default function ThemeToggle({ onChange }: ThemeToggleProps) {
       whileTap={{ scale: 0.95 }}
       title={`Toggle theme (Current: ${currentTheme})`}
     >
-      {/* Animated celestial body */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center"
         animate={{
@@ -51,8 +50,7 @@ export default function ThemeToggle({ onChange }: ThemeToggleProps) {
           <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-400 to-red-500 shadow-inner shadow-orange-300/30" />
         )}
       </motion.div>
-      
-      {/* Constellation dots */}
+
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         {[...Array(4)].map((_, i) => (
           <motion.div
@@ -77,4 +75,4 @@ export default function ThemeToggle({ onChange }: ThemeToggleProps) {
       </div>
     </motion.button>
   );
-} 
+}

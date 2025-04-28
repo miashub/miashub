@@ -1,4 +1,5 @@
 'use client';
+
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
@@ -15,67 +16,68 @@ export default function GalaxyLoader() {
       className="fixed inset-0 bg-black z-50 flex items-center justify-center"
       initial={{ opacity: 1 }}
       animate={{ opacity: isLoading ? 1 : 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.6 }}
       style={{ pointerEvents: isLoading ? 'auto' : 'none' }}
     >
-      <div className="relative w-64 h-64">
-        {/* Spinning Galaxy Rings */}
+      {/* GalaxyLoader Main Container */}
+      <div className="relative w-64 h-64 flex items-center justify-center">
+
+        {/* ===== Rotating Galaxy Rings ===== */}
         {[...Array(5)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full border-2 border-purple-500 opacity-20"
             style={{
-              width: `${100 - i * 15}%`,
-              height: `${100 - i * 15}%`,
-              top: `${i * 7.5}%`,
-              left: `${i * 7.5}%`,
+              width: `${100 - i * 18}%`,
+              height: `${100 - i * 18}%`,
             }}
             animate={{ rotate: 360 }}
             transition={{
-              duration: 8 + i,
-              repeat: Infinity,
+              duration: 8 + i * 2, // Slightly different duration for each ring
               ease: 'linear',
+              repeat: Infinity,
             }}
           />
         ))}
 
-        {/* Shooting Star */}
+        {/* ===== Shooting Star Effect ===== */}
         <motion.div
-          className="absolute w-1 h-1 bg-white rounded-full"
+          className="absolute w-2 h-2 bg-white rounded-full"
           initial={{
-            top: '10%',
+            top: '-10%',
             left: '-10%',
             opacity: 0,
-            scale: 0.5,
+            scale: 0.7,
           }}
           animate={{
-            top: '90%',
+            top: '110%',
             left: '110%',
             opacity: [0, 1, 0],
-            scale: [0.5, 1, 0.8],
+            scale: [0.7, 1.2, 0.8],
           }}
           transition={{
-            duration: 2.5,
+            duration: 2.8,
             ease: 'easeInOut',
             repeat: Infinity,
-            repeatDelay: 6,
+            repeatDelay: 5,
           }}
           style={{
-            boxShadow: '0 0 6px 3px rgba(255,255,255,0.6)',
-            filter: 'blur(1px)',
+            boxShadow: '0 0 12px 4px rgba(255,255,255,0.7)',
+            filter: 'blur(2px)',
           }}
         />
 
-        {/* Loader Text */}
+        {/* ===== Centered Loader Text ===== */}
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
-            animate={{ scale: [1, 1.2, 1] }}
+            animate={{ scale: [1, 1.1, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="text-purple-400 text-xl font-bold"
+            className="text-purple-300 text-2xl tracking-widest font-semibold text-center"
           >
             ENTERING MIA'S PORTFOLIO...
           </motion.div>
         </div>
+
       </div>
     </motion.div>
   );
