@@ -19,20 +19,20 @@ export default function Portfolio() {
   const [activeTab, setActiveTab] = useState<'work' | 'education'>('work');
   const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768); 
-    };
-
-    checkMobile(); 
-
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
   const backgroundGradient = theme === 'nebula'
     ? 'linear-gradient(to right, black 0%, black 35%, rgba(88, 28, 135, 0.2) 50%, black 65%, black 100%)'
     : 'linear-gradient(to right, black 0%, black 35%, rgba(164, 123, 0, 0.2) 50%, black 65%, black 100%)';
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Mobile if width <= 768px
+    };
+    
+    handleResize(); // Run on mount
+    window.addEventListener('resize', handleResize); // Update on resize
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div className="relative min-h-screen overflow-hidden font-sans text-white transition-colors duration-700">
@@ -45,7 +45,8 @@ export default function Portfolio() {
       />
       <CosmicParticles className="absolute inset-0 z-20 opacity-60 pointer-events-none" theme={theme} />
       <GalaxyLoader />
-      {!isMobile && <GalaxyCursor theme={theme} />} 
+
+      {!isMobile && <GalaxyCursor theme={theme} />}
 
       <div className="relative z-30">
         <Navbar 
