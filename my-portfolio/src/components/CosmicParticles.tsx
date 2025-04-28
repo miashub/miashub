@@ -29,7 +29,10 @@ export default function CosmicParticles({ className, theme }: { className?: stri
 
     resizeCanvas();
 
-    const particleCount = window.innerWidth < 900 ? 100 : 400;
+
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 50 : 400; 
+    const shootingStarFrequency = isMobile ? 0.002 : 0.004; 
 
     class Particle {
       x: number;
@@ -41,22 +44,23 @@ export default function CosmicParticles({ className, theme }: { className?: stri
       alphaDir: number;
       hue: number;
       lightness: number;
-      baseLightness: number; 
+      baseLightness: number;
       connections: number;
 
       constructor(width: number, height: number) {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
         this.size = Math.random() * 2 + 0.9;
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.speedY = (Math.random() - 0.5) * 0.3;
+        const speedFactor = isMobile ? 0.2 : 0.3; 
+        this.speedX = (Math.random() - 0.5) * speedFactor;
+        this.speedY = (Math.random() - 0.5) * speedFactor;
         this.alpha = Math.random() * 0.4 + 0.3;
         this.alphaDir = Math.random() > 0.5 ? 1 : -1;
         this.hue = theme === 'nebula'
           ? Math.random() * 60 + 200
           : Math.random() * 30 + 30;
-        this.baseLightness = Math.random() * 20 + 60; 
-        this.lightness = this.baseLightness; 
+        this.baseLightness = Math.random() * 20 + 60;
+        this.lightness = this.baseLightness;
         this.connections = 0;
       }
 
@@ -80,12 +84,10 @@ export default function CosmicParticles({ className, theme }: { className?: stri
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 150) {
-      
             const proximityFactor = 1 - (distance / 150);
             this.lightness = this.baseLightness + (proximityFactor * 30);
-            this.alpha = 0.7 + (proximityFactor * 0.3); 
+            this.alpha = 0.7 + (proximityFactor * 0.3);
           } else {
-   
             this.lightness += (this.baseLightness - this.lightness) * 0.1;
             this.alpha += (0.5 - this.alpha) * 0.1;
           }
@@ -113,7 +115,7 @@ export default function CosmicParticles({ className, theme }: { className?: stri
         this.x = Math.random() * width;
         this.y = Math.random() * height * 0.5;
         this.speed = Math.random() * 8 + 8;
-        this.angle = (Math.random() * Math.PI) / 6 + Math.PI / 4; 
+        this.angle = (Math.random() * Math.PI) / 6 + Math.PI / 4;
         this.length = Math.random() * 100 + 50;
         this.alpha = 1;
       }
@@ -132,7 +134,6 @@ export default function CosmicParticles({ className, theme }: { className?: stri
         );
         gradient.addColorStop(0, `hsla(0, 0%, 100%, ${this.alpha})`);
         gradient.addColorStop(1, `hsla(0, 0%, 100%, 0)`);
-
         ctx.strokeStyle = gradient;
         ctx.lineWidth = 2.5;
         ctx.beginPath();
@@ -144,7 +145,7 @@ export default function CosmicParticles({ className, theme }: { className?: stri
 
     const particles: Particle[] = [];
     const shootingStars: ShootingStar[] = [];
-    const mouse = { x: -9999, y: -9999 }; 
+    const mouse = { x: -9999, y: -9999 };
 
     const initParticles = () => {
       const { width, height } = getSize();
@@ -215,7 +216,7 @@ export default function CosmicParticles({ className, theme }: { className?: stri
         }
       }
 
-      if (Math.random() < 0.004) { // shooting stars rarity
+      if (Math.random() < shootingStarFrequency) {
         shootingStars.push(new ShootingStar(width, height));
       }
 

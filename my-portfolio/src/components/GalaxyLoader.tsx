@@ -22,7 +22,7 @@ export default function GalaxyLoader() {
       {/* GalaxyLoader Main Container */}
       <div className="relative w-64 h-64 flex items-center justify-center">
 
-        {/* ===== Rotating Galaxy Rings ===== */}
+        {/* Rotating Galaxy Rings */}
         {[...Array(5)].map((_, i) => (
           <motion.div
             key={i}
@@ -33,16 +33,16 @@ export default function GalaxyLoader() {
             }}
             animate={{ rotate: 360 }}
             transition={{
-              duration: 8 + i * 2, // Slightly different duration for each ring
+              duration: 8 + i * 2, 
               ease: 'linear',
               repeat: Infinity,
             }}
           />
         ))}
 
-        {/* ===== Shooting Star Effect ===== */}
+        {/* Purple Shooting Star */}
         <motion.div
-          className="absolute w-2 h-2 bg-white rounded-full"
+          className="absolute w-2 h-2 bg-purple-400 rounded-full"
           initial={{
             top: '-10%',
             left: '-10%',
@@ -62,12 +62,12 @@ export default function GalaxyLoader() {
             repeatDelay: 5,
           }}
           style={{
-            boxShadow: '0 0 12px 4px rgba(255,255,255,0.7)',
+            boxShadow: '0 0 12px 4px rgba(192,132,252,0.7)', 
             filter: 'blur(2px)',
           }}
         />
 
-        {/* ===== Centered Loader Text ===== */}
+        {/* Centered Loader Text */}
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
             animate={{ scale: [1, 1.1, 1] }}

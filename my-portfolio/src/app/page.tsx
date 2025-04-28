@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Home from '../pages/Home';
 import Projects from '../pages/Projects';
 import Skills from '../pages/Skills';
-import Contact from './Contact';
+import Contact from '../pages/Contact';
 import Footer from '../components/Footer';
 import GalaxyLoader from '../components/GalaxyLoader';
 import ResumeModal from '../pages/ResumeModal';
@@ -17,6 +17,18 @@ export default function Portfolio() {
   const [showResume, setShowResume] = useState(false);
   const [theme, setTheme] = useState<'nebula' | 'supernova'>('nebula');
   const [activeTab, setActiveTab] = useState<'work' | 'education'>('work');
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); 
+    };
+
+    checkMobile(); 
+
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const backgroundGradient = theme === 'nebula'
     ? 'linear-gradient(to right, black 0%, black 35%, rgba(88, 28, 135, 0.2) 50%, black 65%, black 100%)'
@@ -33,7 +45,7 @@ export default function Portfolio() {
       />
       <CosmicParticles className="absolute inset-0 z-20 opacity-60 pointer-events-none" theme={theme} />
       <GalaxyLoader />
-      <GalaxyCursor theme={theme} />
+      {!isMobile && <GalaxyCursor theme={theme} />} 
 
       <div className="relative z-30">
         <Navbar 

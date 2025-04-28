@@ -5,6 +5,21 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { PROJECTS } from '../utils/constants';
 
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return isMobile;
+};
+
 type Project = {
   title: string;
   description: string;
@@ -17,12 +32,15 @@ type Project = {
   };
 };
 
-const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex, theme }: { 
+const ProjectCard = React.memo(({ 
+  project, index, flippedIndex, setFlippedIndex, theme, isMobile 
+}: { 
   project: Project;
   index: number;
   flippedIndex: number | null;
   setFlippedIndex: (index: number | null) => void;
   theme: 'nebula' | 'supernova';
+  isMobile: boolean;
 }) => {
   const [hovering, setHovering] = useState(false);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
@@ -67,12 +85,13 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
       className="h-[500px] perspective-1000"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, scale: 0.8 }}
+      initial={{ opacity: 0, scale: isMobile ? 0.95 : 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.6, delay: index * 0.12 }}
+      transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : index * 0.12 }}
       viewport={{ once: false, amount: 0.1 }}
       style={{ willChange: 'transform, opacity' }}
     >
+      {/* Front Side */}
       <div
         className={`relative w-full h-full flip-card transition-transform duration-300 ${
           flippedIndex === index
@@ -82,12 +101,14 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
             : ''
         }`}
       >
+        {/* Front Card */}
         <div
           className={`absolute inset-0 bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-md flex flex-col ${
             theme === 'nebula' ? 'hover:shadow-purple-500/50' : 'hover:shadow-yellow-500/50'
           }`}
           style={{ backfaceVisibility: 'hidden' }}
         >
+          {/* Flip Button */}
           <button
             onClick={toggleFlip}
             className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
@@ -99,6 +120,7 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
             </svg>
           </button>
 
+          {/* Project Image */}
           <a
             href={project.live}
             target="_blank"
@@ -122,8 +144,10 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
             </h4>
           </a>
 
+          {/* Project Description */}
           <p className="text-gray-300 text-sm mb-5 flex-grow">{project.description}</p>
 
+          {/* Icons */}
           <div className="flex flex-wrap gap-3 mb-6">
             {project.icons.map((icon: string) => (
               <motion.div
@@ -144,6 +168,7 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
                   />
                 </div>
 
+                {/* Tooltip */}
                 <AnimatePresence>
                   {hoveredSkill === icon && (
                     <motion.div
@@ -172,6 +197,7 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
             ))}
           </div>
 
+          {/* Buttons */}
           <div className="flex gap-4">
             <a
               href={project.live}
@@ -200,6 +226,7 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
           </div>
         </div>
 
+        {/* Back Card */}
         <div
           className={`absolute inset-0 bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-md flex flex-col ${
             theme === 'nebula' ? 'shadow-purple-500/20' : 'shadow-yellow-500/20'
@@ -244,6 +271,7 @@ const ProjectCard = React.memo(({ project, index, flippedIndex, setFlippedIndex,
 
 export default function Projects({ theme }: { theme: 'nebula' | 'supernova' }) {
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
+  const isMobile = useIsMobile();
 
   return (
     <section id="projects" className="min-h-screen flex flex-col items-center px-6 gap-5 pt-25 pb-5 relative overflow-hidden">
@@ -256,7 +284,7 @@ export default function Projects({ theme }: { theme: 'nebula' | 'supernova' }) {
           }`}
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: isMobile ? 0.5 : 0.8 }}
           viewport={{ once: false, amount: 0.1 }}
         >
           My Projects
@@ -271,19 +299,19 @@ export default function Projects({ theme }: { theme: 'nebula' | 'supernova' }) {
               flippedIndex={flippedIndex}
               setFlippedIndex={setFlippedIndex}
               theme={theme}
+              isMobile={isMobile}
             />
           ))}
 
+          {/* Coming Soon Box */}
           <motion.div
             className="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-md shadow-white/5 flex flex-col justify-center items-center text-center min-h-[500px]"
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: isMobile ? 0.95 : 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: PROJECTS.length * 0.12 }}
+            transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : PROJECTS.length * 0.12 }}
             viewport={{ once: false, amount: 0.1 }}
           >
-            <h4 className="text-2xl font-bold mb-4">
-              Coming Soon...
-            </h4>
+            <h4 className="text-2xl font-bold mb-4">Coming Soon...</h4>
             <p className="text-gray-400 text-sm">
               More exciting projects are in progress. Stay tuned!
             </p>

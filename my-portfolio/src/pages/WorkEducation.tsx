@@ -200,11 +200,11 @@ export default function WorkEducation({
         </h3>
 
         {/* Tabs */}
-        <div className="sticky top-1 z-20 flex justify-center gap-4 sm:gap-8 bg-white/5 backdrop-blur-md rounded-xl py-2 px-4 sm:py-3 sm:px-6 shadow-md border border-white/10">
+        <div className="sticky top-1 z-20 flex justify-center gap-2 sm:gap-8 bg-white/5 backdrop-blur-sm rounded-md sm:rounded-xl py-2 px-3 sm:py-3 sm:px-6 shadow-md border border-white/10">
           <button
             onClick={() => setTab('work')}
             disabled={scrambling}
-            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-all ${
+            className={`px-3 sm:px-6 py-1 sm:py-3 rounded-md sm:rounded-lg text-xs sm:text-base font-semibold transition-all ${
               activeTab === 'work' ? `bg-white/10 ${tabColor} shadow-md` : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -213,7 +213,7 @@ export default function WorkEducation({
           <button
             onClick={() => setTab('education')}
             disabled={scrambling}
-            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-all ${
+            className={`px-3 sm:px-6 py-1 sm:py-3 rounded-md sm:rounded-lg text-xs sm:text-base font-semibold transition-all ${
               activeTab === 'education' ? `bg-white/10 ${tabColor} shadow-md` : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -222,20 +222,20 @@ export default function WorkEducation({
         </div>
 
         {/* Cards Section */}
-        <div className="max-w-7xl w-full p-4 sm:p-6 md:p-10 rounded-2xl border border-white/5 shadow-md shadow-white/5 backdrop-blur-md bg-white/5 flex flex-col gap-8">
+        <div className="max-w-7xl w-full p-2 sm:p-6 md:p-10 rounded-2xl border border-white/5 shadow-md shadow-white/5 backdrop-blur-md bg-white/5 flex flex-col gap-6 sm:gap-8">
           {displayedItems.map((item, index) => (
             <div
               key={index}
-              className="bg-white/5 backdrop-blur-sm p-5 sm:p-6 rounded-xl shadow-md flex flex-col gap-3 transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+              className="bg-white/5 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-md flex flex-col gap-3 transition-transform duration-300 ease-in-out hover:scale-100 sm:hover:scale-105 hover:shadow-lg"
             >
-              <h3 className={`text-xl sm:text-2xl font-bold ${tabColor}`}>{item.roleOrDegree}</h3>
+              <h3 className={`text-lg sm:text-2xl font-bold ${tabColor}`}>{item.roleOrDegree}</h3>
               {item.companyOrSchool && <p className="text-gray-300">{item.companyOrSchool}</p>}
-              {item.period && <p className="text-gray-400 text-sm whitespace-pre-line">{item.period}</p>}
+              {item.period && <p className="text-gray-400 text-xs sm:text-sm whitespace-pre-line">{item.period}</p>}
 
-              <ul className="flex flex-col gap-2 mt-4">
+              <ul className="flex flex-col gap-2 mt-3 sm:mt-4">
                 {item.descriptionPoints.map((point, idx) => (
                   point.trim() && (
-                    <li key={idx} className="relative pl-6 text-gray-300">
+                    <li key={idx} className="relative pl-5 sm:pl-6 text-gray-300 text-sm">
                       <span
                         className={`absolute left-0 top-2 w-2 h-2 rounded-full ${bulletColor} shadow-md`}
                       ></span>
@@ -246,9 +246,9 @@ export default function WorkEducation({
               </ul>
 
               {item.skills.length > 0 && (
-                <div className="flex flex-wrap gap-3 mt-3">
+                <div className="flex flex-wrap gap-2 sm:gap-3 mt-2 sm:mt-3">
                   {item.skills.map((skill, idx) => (
-                    <span key={idx} className="px-3 py-1 bg-white/10 rounded-full text-sm shadow-sm">
+                    <span key={idx} className="px-2 sm:px-3 py-1 bg-white/10 rounded-full text-xs sm:text-sm shadow-sm">
                       {skill}
                     </span>
                   ))}

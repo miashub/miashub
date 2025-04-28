@@ -18,9 +18,9 @@ export default function Skills({ theme }: { theme: 'nebula' | 'supernova' }) {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 2500);
+      setIsMobile(window.innerWidth < 1024);
     };
-    handleResize(); // Detect immediately on load
+    handleResize(); 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
