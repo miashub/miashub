@@ -65,7 +65,7 @@ export default function Portfolio() {
         <Footer />
       </div>
 
-      <ResumeModal open={showResume} onClose={() => setShowResume(false)} />
+      <ResumeModal open={showResume} onClose={() => setShowResume(false)} theme={theme} />
     </div>
   );
 }

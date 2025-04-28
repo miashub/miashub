@@ -4,10 +4,22 @@ import { motion } from 'framer-motion';
 interface ResumeModalProps {
   open: boolean;
   onClose: () => void;
+  theme: 'nebula' | 'supernova'; // Add theme here
 }
 
-export default function ResumeModal({ open, onClose }: ResumeModalProps) {
+export default function ResumeModal({ open, onClose, theme }: ResumeModalProps) {
   if (!open) return null;
+
+  const buttonHoverColor = theme === 'nebula' ? 'hover:text-purple-400' : 'hover:text-yellow-400';
+  const downloadGradient = theme === 'nebula'
+    ? 'from-purple-500 to-blue-600'
+    : 'from-yellow-400 to-orange-500';
+  const shadowColor = theme === 'nebula'
+    ? 'shadow-purple-500/20'
+    : 'shadow-yellow-400/20';
+  const modalBackground = theme === 'nebula'
+    ? 'bg-[#0a0a1a]'
+    : 'bg-[#1a1400]'; // Slightly warm dark color for supernova
 
   return (
     <motion.div
@@ -15,10 +27,10 @@ export default function ResumeModal({ open, onClose }: ResumeModalProps) {
       animate={{ opacity: 1 }}
       className="fixed inset-0 bg-black bg-opacity-90 flex justify-center items-center z-50"
     >
-      <div className="bg-[#0a0a1a] rounded-xl p-6 w-[90%] max-w-4xl relative border border-indigo-900/50 shadow-lg shadow-indigo-900/20">
+      <div className={`${modalBackground} rounded-xl p-6 w-[90%] max-w-4xl relative border border-indigo-900/50 shadow-lg ${shadowColor}`}>
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white text-xl hover:text-purple-400 transition-colors"
+          className={`absolute top-4 right-4 text-white text-xl transition-colors ${buttonHoverColor}`}
         >
           ✕
         </button>
@@ -31,7 +43,7 @@ export default function ResumeModal({ open, onClose }: ResumeModalProps) {
           <a
             href="/mia_resume.pdf"
             download
-            className="bg-gradient-to-r from-purple-500 to-blue-600 px-6 py-2 rounded-lg hover:opacity-90 transition-opacity shadow-lg shadow-purple-500/20"
+            className={`bg-gradient-to-r ${downloadGradient} px-6 py-2 rounded-lg hover:opacity-90 transition-opacity shadow-lg ${shadowColor}`}
           >
             Download
           </a>
