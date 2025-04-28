@@ -85,14 +85,14 @@ export default function Skills({ theme }: { theme: 'nebula' | 'supernova' }) {
   };
 
   return (
-    <section id="skills" ref={skillsRef} className="min-h-[70vh] flex flex-col items-center px-6 gap-5 pt-25 relative overflow-hidden">
+    <section id="skills" ref={skillsRef} className="min-h-[70vh] flex flex-col items-center px-6 gap-5 pt-27 relative overflow-hidden">
 
       {/* Section Title */}
       <motion.h3
         initial={{ y: -50, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        viewport={{ amount: 0.5 }}
+        viewport={{ amount: 0.2 }}
         className={`text-4xl md:text-5xl font-bold mb-10 text-center bg-clip-text text-transparent ${
           theme === 'nebula'
             ? 'bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500'
