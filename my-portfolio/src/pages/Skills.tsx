@@ -35,10 +35,13 @@ export default function Skills({ theme }: { theme: 'nebula' | 'supernova' }) {
   const SKILL_POSITIONS: { [key: string]: { x: number; y: number }[] } = {
     'Frontend': [
       { x: 200, y: 25 },
-      { x: 360, y: 90 },
+      { x: 320, y: 120 },
+      { x: 430, y: 30 },
       { x: 480, y: 220 },
       { x: 630, y: 60 },
       { x: 830, y: 160 },
+      { x: 760, y: 240 },
+
     ],
     'Backend & Databases': [
       { x: 300, y: 160 },
@@ -46,7 +49,7 @@ export default function Skills({ theme }: { theme: 'nebula' | 'supernova' }) {
       { x: 440, y: 230 },
       { x: 690, y: 140 },
     ],
-    'Languages & Core': [
+    'Programming Languages': [
       { x: 270, y: 90 },
       { x: 480, y: 40 },
       { x: 730, y: 130 },

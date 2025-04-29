@@ -50,44 +50,47 @@ export const PROJECTS = [
 // --- Organized SKILLS with categories ---
 
 export const SKILL_CATEGORIES = [
-  {
-    title: "Frontend",
-    icon: "monitor", // New icon field
-    skills: [
-      { name: "React", icon: "react" },
-      { name: "Next.js", icon: "nextjs" },
-      { name: "TailwindCSS", icon: "tailwind" },
-      { name: "JavaScript", icon: "javascript" },
-      { name: "TypeScript", icon: "typescript" },
-    ],
-  },
-  {
-    title: "Backend & Databases",
-    icon: "server",
-    skills: [
-      { name: "Django", icon: "django" },
-      { name: "Python", icon: "python" },
-      { name: "PostgreSQL", icon: "postgresql" },
-      { name: "MySQL", icon: "mysql" },
-    ],
-  },
-  {
-    title: "Languages & Core",
-    icon: "code",
-    skills: [
-      { name: "Python", icon: "python" },
-      { name: "C++", icon: "c" },
-      { name: "HTML5", icon: "html" },
-      { name: "CSS3", icon: "css" },
-    ],
-  },
-  {
-    title: "DevOps & Tools",
-    icon: "settings",
-    skills: [
-      { name: "Linux", icon: "linux" },
-      { name: "Git", icon: "git" },
-      { name: "VS Code", icon: "vscode" },
-    ],
-  }
-];
+    {
+      title: "Frontend",
+      icon: "monitor",
+      skills: [
+        { name: "React", icon: "react" },
+        { name: "Next.js", icon: "nextjs" },
+        { name: "Tailwind CSS", icon: "tailwind" },
+        { name: "JavaScript", icon: "javascript" },
+        { name: "TypeScript", icon: "typescript" },
+        { name: "HTML5", icon: "html" },
+        { name: "CSS3", icon: "css" },
+      ],
+    },
+    {
+      title: "Backend & Databases",
+      icon: "server",
+      skills: [
+        { name: "Django", icon: "django" },
+        { name: "Python", icon: "python" },
+        { name: "PostgreSQL", icon: "postgresql" },
+        { name: "MySQL", icon: "mysql" },
+      ],
+    },
+    {
+      title: "Programming Languages",
+      icon: "code",
+      skills: [
+        { name: "Python", icon: "python" },
+        { name: "C++", icon: "c" },
+        { name: "TypeScript", icon: "typescript" },
+        { name: "JavaScript", icon: "javascript" },
+      ],
+    },
+    {
+      title: "DevOps & Tools",
+      icon: "settings",
+      skills: [
+        { name: "Linux", icon: "linux" },
+        { name: "Git", icon: "git" },
+        { name: "VS Code", icon: "vscode" },
+      ],
+    }
+  ];
+  
