@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MiaHub",
-  description: "Explore your cosmic tech hub — powered by Mia.",
+  title: "MiasHub",
+  description: "Explore Mia's cosmic portfolio — powered by Mia.",
   icons: {
     icon: "/favicon.ico",   
   },
