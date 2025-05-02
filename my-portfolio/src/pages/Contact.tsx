@@ -87,7 +87,7 @@ export default function Contact({ theme }: { theme: 'nebula' | 'supernova' }) {
           </motion.a>
 
           <motion.a 
-            href="linkedin.com/in/mia-shajahan" 
+            href="https://linkedin.com/in/mia-shajahan" 
             className={`text-gray-400 ${getHoverStyles('linkedin')} transition-all`}
             whileHover={{ scale: 1.2 }}
             transition={{ type: 'spring', stiffness: 300, delay: 0.2 }}
