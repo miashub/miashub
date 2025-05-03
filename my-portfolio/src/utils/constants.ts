@@ -28,7 +28,7 @@ export const PROJECTS = [
     description: "Encrypted file sharing using Django and Fernet encryption with previews and auth.",
     icons: ["python", "django", "postgresql", "html", "css"],
     live: "https://sfh-web.onrender.com",
-    github: "https://github.com/miashub/file-sharing",
+    github: "https://github.com/miashub/SHF-file-sharing-website",
     details: {
       features: [
         "End-to-end file encryption",
